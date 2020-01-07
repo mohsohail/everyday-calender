@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Date.scss';
+
 const Date = ({ year, day, monthIndex, getDaysFromMonths }) => {
   return (
     <div className="dates">

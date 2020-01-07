@@ -1,0 +1,10 @@
+@import '../../../style.scss';
+
+.date {
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 50%;
+  border: 2px solid $GOLD;
+}
