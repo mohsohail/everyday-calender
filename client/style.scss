@@ -1,5 +1,9 @@
-/* @import url('https://fonts.googleapis.com/css?family=Libre+Franklin&display=swap'); */
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+$COAL: #111111;
+$GOLD: #ffcf40;
+
 body {
-  font-family: 'Libre Franklin', sans-serif;
-  background: #111111;
+  font-family: 'Muli', sans-serif;
+  background-color: $COAL;
+  color: $GOLD;
 }
