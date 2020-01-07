@@ -1,4 +1,5 @@
 import React from 'react';
+import Date from '../Date/Date';
 import { getMonths } from '../../constants/global.constants';
 import { getDaysInMonth } from '../../utils/date.utils';
 
@@ -26,21 +27,17 @@ class Calendar extends React.Component {
     return (
       <div className="component-container">
         <div className="calendar-container">
-          {months.map((month, index) => {
+          {months.map((month, monthIndex) => {
             return (
               <div key={month} className="months-dates-container">
                 <div className="months">
                   <p className="month">{month}</p>
                 </div>
-                <div className="dates">
-                  {this.getDaysFromMonths(year, index, day).map((day, index) => {
-                    return (
-                      <p key={index} className="date">
-                        {day}
-                      </p>
-                    );
-                  })}
-                </div>
+                <Date
+                  {...this.state}
+                  monthIndex={monthIndex}
+                  getDaysFromMonths={this.getDaysFromMonths}
+                />
               </div>
             );
           })}
