@@ -6,12 +6,12 @@ import './Date.scss';
 const handleClick = e => {
   e.target.classList.toggle('highlight');
 };
-const Date = ({ year, day, monthIndex, getDaysFromMonths }) => {
+const Date = ({ days }) => {
   return (
     <div className="dates">
-      {getDaysFromMonths(year, monthIndex, day).map((day, dayIndex) => {
+      {days.map(day => {
         return (
-          <p key={dayIndex} className="date" onClick={handleClick}>
+          <p key={day} className="date" onClick={handleClick}>
             {day}
           </p>
         );

@@ -1,3 +1,5 @@
+import { getMonths as allMonths } from '../constants/global.constants';
+
 function getDaysInMonth(year, month, day) {
   const date = new Date(Date.UTC(year, month, day));
   const days = [];
@@ -5,7 +7,10 @@ function getDaysInMonth(year, month, day) {
     days.push(new Date(date).getDate());
     date.setDate(date.getDate() + 1);
   }
-  return days;
+  return {
+    monthOf: allMonths[month],
+    days: days
+  };
 }
 
 export { getDaysInMonth };
