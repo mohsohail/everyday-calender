@@ -1,5 +1,4 @@
 function getDaysInMonth(year, month, day) {
-  console.log(year, month, day);
   const date = new Date(Date.UTC(year, month, day));
   const days = [];
   while (date.getMonth() === month) {
