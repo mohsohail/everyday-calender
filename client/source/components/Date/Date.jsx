@@ -5,6 +5,7 @@ import './Date.scss';
 
 const handleClick = e => {
   e.target.style.color = '#ffcf40';
+  e.target.style.borderColor = '#ffcf40';
 };
 const Date = ({ year, day, monthIndex, getDaysFromMonths }) => {
   return (
