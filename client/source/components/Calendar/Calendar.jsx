@@ -18,9 +18,7 @@ class Calendar extends React.Component {
     // this.getDaysFromMonths();
   }
   getDaysFromMonths(year, month, day) {
-    const foo = getDaysInMonth(year, month, day);
-    console.log(foo);
-    return foo;
+    return getDaysInMonth(year, month, day);
   }
   render() {
     const { months, year, day } = this.state;
