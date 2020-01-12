@@ -43,7 +43,9 @@ class Calendar extends React.Component {
                 <div className="months">
                   <p className="month">{item.monthOf}</p>
                 </div>
-                <Date days={item.days} />
+                {item.days.map(day => {
+                  return <Date key={day} day={day} />;
+                })}
               </div>
             );
           })}
