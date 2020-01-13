@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --config config/webpack/webpack.config.js --mode development --open --hot",
-    "build:prod": "webpack --mode production"
+    "build:prod": "webpack --config config/webpack/webpack.config.js --mode production"
   },
   "author": "Mohammad Sohail",
   "license": "ISC",
