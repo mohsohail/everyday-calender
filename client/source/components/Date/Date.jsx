@@ -7,10 +7,11 @@ const handleClick = e => {
   e.target.classList.toggle('highlight');
 };
 const Date = ({ day }) => {
+  console.log('consoling day', day);
   return (
     <div className="dates">
-      <p key={day} className="date" onClick={handleClick}>
-        {day}
+      <p key={day.day} className="date" onClick={handleClick}>
+        {day.day}
       </p>
     </div>
   );

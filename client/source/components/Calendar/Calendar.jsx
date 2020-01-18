@@ -2,7 +2,7 @@ import React from 'react';
 import Date from '../Date/Date';
 import { getMonths as allMonths } from '../../constants/global.constants';
 import { getDaysInMonth } from '../../utils/date.utils';
-import { initIndexedDB } from '../../utils/indexedDb.utils';
+import { initIndexedDB, getAll } from '../../utils/indexedDb.utils';
 
 import './Calendar.scss';
 
@@ -13,16 +13,28 @@ class Calendar extends React.Component {
       year: 2020,
       day: 1,
       months: allMonths,
-      //
-      collection: []
+      collection: [],
+      dataPayload: []
     };
   }
 
+  foo = data => {
+    this.setState({
+      dataPayload: data
+    });
+  };
+  getMonthData = () => {
+    getAll(this.foo);
+  };
+
   componentDidMount() {
+    const that = this;
     const { year, day, months } = this.state;
     for (let i = 0; i < months.length; i++) {
       this.getDaysFromMonths(year, i, day);
     }
+
+    setTimeout(that.getMonthData, 2000);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -44,23 +56,27 @@ class Calendar extends React.Component {
     });
   };
   render() {
-    const { collection } = this.state;
+    const { dataPayload } = this.state;
     return (
       <div className="component-container">
-        <div className="calendar-container">
-          {collection.map(item => {
-            return (
-              <div key={item.monthOf} className="months-dates-container">
-                <div className="months">
-                  <p className="month">{item.monthOf}</p>
-                </div>
-                {item.days.map(day => {
-                  return <Date key={day} day={day} />;
-                })}
-              </div>
-            );
-          })}
-        </div>
+        {dataPayload.length > 0 && (
+          <div>
+            <div className="calendar-container">
+              {dataPayload.map(item => {
+                return (
+                  <div key={item.monthOf} className="months-dates-container">
+                    <div className="months">
+                      <p className="month">{item.monthOf}</p>
+                    </div>
+                    {item.days.map(day => {
+                      return <Date key={day.day} day={day} />;
+                    })}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     );
   }

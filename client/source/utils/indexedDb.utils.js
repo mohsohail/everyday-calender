@@ -1,5 +1,6 @@
 let db = null;
 export const initIndexedDB = res => {
+  console.log('res...', res);
   const openRequest = indexedDB.open('calendar', 1);
 
   openRequest.onupgradeneeded = e => {
@@ -32,15 +33,26 @@ export const initIndexedDB = res => {
       };
       payload.days = [];
       for (let i = 1; i <= daysInThatMonth.length; i++) {
-        payload.days.push({ status: false });
+        payload.days.push({ day: i, status: false });
       }
       store.add(payload);
     });
   };
 };
 
-export const getAll = () => {
+export const getAll = cb => {
   let getAllMonthData = [];
-  Object.keys(db.objectStoreNames).map(month => {});
-  const transaction = db.transaction();
+  Object.keys(db.objectStoreNames).map(month => {
+    const transaction = db.transaction(db.objectStoreNames[month], 'readonly');
+    const store = transaction.objectStore(db.objectStoreNames[month]);
+
+    let getRequest = store.get(1);
+    getRequest.onsuccess = e => {
+      const response = e.target.result;
+      getAllMonthData.push(response);
+    };
+    transaction.oncomplete = e => {
+      cb(getAllMonthData);
+    };
+  });
 };
