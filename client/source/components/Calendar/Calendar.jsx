@@ -2,6 +2,7 @@ import React from 'react';
 import Date from '../Date/Date';
 import { getMonths as allMonths } from '../../constants/global.constants';
 import { getDaysInMonth } from '../../utils/date.utils';
+import { initIndexedDB } from '../../utils/indexedDb.utils';
 
 import './Calendar.scss';
 
@@ -16,6 +17,7 @@ class Calendar extends React.Component {
       collection: []
     };
   }
+
   componentDidMount() {
     const { year, day, months } = this.state;
     for (let i = 0; i < months.length; i++) {
@@ -23,10 +25,19 @@ class Calendar extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.collection.length !== this.state.collection.length &&
+      this.state.collection.length === 12
+    ) {
+      initIndexedDB(this.state.collection);
+    }
+  }
+
   getDaysFromMonths = (year, month, day) => {
-    const res = getDaysInMonth(year, month, day);
+    const response = getDaysInMonth(year, month, day);
     this.setState(state => {
-      const collection = state.collection.concat(res);
+      const collection = state.collection.concat(response);
       return {
         collection
       };
