@@ -14,8 +14,10 @@ const getDaysInMonth = (day, month, year) => {
 };
 
 export const getListOfMonthAndItsDays = (day, months, year) => {
+  let listOfMonthAndItsDays = [];
   for (let month = 0; month < months.length; month++) {
-    const individualMonthData = getDaysInMonth(day, month, year);
-    console.log(individualMonthData);
+    let individualMonthData = getDaysInMonth(day, month, year);
+    listOfMonthAndItsDays.push(individualMonthData);
   }
+  return listOfMonthAndItsDays;
 };

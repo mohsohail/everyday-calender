@@ -19,22 +19,14 @@ class CalendarPage extends React.Component {
     const { day, months, year } = this.state;
 
     const listOfMonthAndItsDays = getListOfMonthAndItsDays(day, months, year);
-
-    // for (let month = 0; month < months.length; month++) {
-    //   const individualMonth = getDaysInMonth(year, month, day);
-    //   this.setState(state => {
-    //     const collectionOfMonths = state.collectionOfMonths.concat(individualMonth);
-    //     return {
-    //       collectionOfMonths
-    //     };
-    //   });
-    // }
+    this.setState({
+      collectionOfMonths: listOfMonthAndItsDays
+    });
   }
 
   componentDidUpdate() {
     const { collectionOfMonths } = this.state;
     if (collectionOfMonths.length === 12) {
-      // initIndexedDB();
       console.log('12');
     }
   }
