@@ -1,5 +1,5 @@
 let db = null;
-export const initIndexedDB = payload => {
+export const initIndexedDB = listOfMonthsData => {
   //   console.log('res...', res);
   //   const openRequest = indexedDB.open('calendar', 1);
 
@@ -60,32 +60,48 @@ export const initIndexedDB = payload => {
 
   let db;
   const openRequest = indexedDB.open('calendar');
-
   openRequest.onupgradeneeded = e => {
     db = e.target.result;
-    db.onerror = e => {
-      console.log('error');
-    };
-    const store = db.createObjectStore('jan', { keyPath: 'day' });
-    const dayIndex = store.createIndex('by_day', 'day', { unique: true });
+    db.onerror = e => {};
+
+    listOfMonthsData.forEach(elem => {
+      let month = elem.monthOf;
+      db.createObjectStore(month, {
+        keyPath: 'day'
+      });
+    });
+    // const store = db.createObjectStore('jan', { keyPath: 'day' });
+    // const dayIndex = store.createIndex('by_day', 'day', { unique: true });
   };
 
-  openRequest.onerror = e => {
-    console.log(e);
-  };
+  openRequest.onerror = e => {};
 
   openRequest.onsuccess = e => {
-    console.log(e);
     db = e.target.result;
 
-    const transaction = db.transaction('jan', 'readwrite');
-    const store = transaction.objectStore('jan');
+    Object.keys(db.objectStoreNames).map(month => {
+      const transaction = db.transaction(db.objectStoreNames[month], 'readwrite');
+      const store = transaction.objectStore(db.objectStoreNames[month]);
+      let currentMonth = listOfMonthsData.filter(item => {
+        return item.monthOf === db.objectStoreNames[month];
+      });
 
-    const obj = {
-      day: 1,
-      status: true
-    };
+      const daysInCurrentMonth = currentMonth[0].days;
+      for (let i = 1; i <= daysInCurrentMonth; i++) {
+        store.add({
+          day: i,
+          status: false
+        });
+      }
+    });
+    // const transaction = db.transaction('jan', 'readwrite');
+    // const store = transaction.objectStore('jan');
 
-    store.add(obj);
+    // const obj = {
+    //   day: 1,
+    //   status: true
+    // };
+
+    // store.add(obj);
   };
 };
