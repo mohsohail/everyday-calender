@@ -1,6 +1,6 @@
-import { getMonths as allMonths } from '../constants/global.constants';
+import calendarConstants from '../constants/calendar.constants';
 
-function getDaysInMonth(year, month, day) {
+const getDaysInMonth = (day, month, year) => {
   const date = new Date(Date.UTC(year, month, day));
   const days = [];
   while (date.getMonth() === month) {
@@ -8,9 +8,14 @@ function getDaysInMonth(year, month, day) {
     date.setDate(date.getDate() + 1);
   }
   return {
-    monthOf: allMonths[month],
+    monthOf: calendarConstants.months[month],
     days: days
   };
-}
+};
 
-export { getDaysInMonth };
+export const getListOfMonthAndItsDays = (day, months, year) => {
+  for (let month = 0; month < months.length; month++) {
+    const individualMonthData = getDaysInMonth(day, month, year);
+    console.log(individualMonthData);
+  }
+};

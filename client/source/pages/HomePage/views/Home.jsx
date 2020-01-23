@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import Calendar from '../../../components/Calendar/Calendar';
+import React from 'react';
 import Header from '../../../components/Header/Header';
 
-class Home extends Component {
+class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -10,8 +9,8 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {/* <Header /> */}
-        <Calendar />
+        <Header />
+        {/* <Calendar /> */}
       </div>
     );
   }

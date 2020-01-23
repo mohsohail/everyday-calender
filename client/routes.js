@@ -1,3 +1,6 @@
-import Home from './source/pages/Home/HomePage';
-
-export default [{ path: '/', exact: true, component: Home }];
+import Home from './source/pages/HomePage/HomePage';
+import Calendar from './source/pages/CalendarPage/CalendarPage';
+export default [
+  { path: '/', exact: true, component: Home },
+  { path: '/calendar', exact: true, component: Calendar }
+];
