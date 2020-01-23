@@ -11,7 +11,7 @@ class CalendarPage extends React.Component {
       day: calendarConstants.day,
       months: calendarConstants.months,
       year: calendarConstants.year,
-      collectionOfMonths: []
+      listOfMonthAndItsDays: []
     };
   }
 
@@ -20,14 +20,14 @@ class CalendarPage extends React.Component {
 
     const listOfMonthAndItsDays = getListOfMonthAndItsDays(day, months, year);
     this.setState({
-      collectionOfMonths: listOfMonthAndItsDays
+      listOfMonthAndItsDays
     });
   }
 
   componentDidUpdate() {
-    const { collectionOfMonths } = this.state;
-    if (collectionOfMonths.length === 12) {
-      console.log('12');
+    const { listOfMonthAndItsDays } = this.state;
+    if (listOfMonthAndItsDays.length === 12) {
+      initIndexedDB(listOfMonthAndItsDays);
     }
   }
 
