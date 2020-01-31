@@ -1,12 +1,4 @@
-import calendarConstants from '../constants/calendar.constants';
-
-const getDaysInMonth = (day, month, year) => {
-  const days = new Date(year, month, 0).getDate();
-  return {
-    monthOf: calendarConstants.months[month],
-    days: days
-  };
-};
+const calendarConstants = require('../constants/calendarConstants');
 
 const getDaysInMonth2 = (day, month, year) => {
   const date = new Date(Date.UTC(year, month, day));
@@ -24,11 +16,16 @@ const getDaysInMonth2 = (day, month, year) => {
   };
 };
 
-export const getListOfMonthAndItsDays = (day, months, year) => {
+const getListOfMonthAndItsDays = (day, months, year) => {
   let listOfMonthAndItsDays = [];
   for (let month = 0; month < months.length; month++) {
     let individualMonthData = getDaysInMonth2(day, month, year);
     listOfMonthAndItsDays.push(individualMonthData);
   }
   return listOfMonthAndItsDays;
+};
+
+module.exports = {
+  getDaysInMonth2,
+  getListOfMonthAndItsDays
 };

@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --config config/webpack/webpack.config.js --mode development --open --hot",
+    "start": "concurrently \"webpack-dev-server --config config/webpack/webpack.config.js --mode development --open --hot\" \"cd server && nodemon index.js\"",
     "build:prod": "webpack --config config/webpack/webpack.config.js --mode production"
   },
   "author": "Mohammad Sohail",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
+    "concurrently": "^5.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.8.10",
@@ -37,6 +39,7 @@
     "html-webpack-plugin": "^3.2.0",
     "install": "^0.13.0",
     "node-sass": "^4.13.0",
+    "nodemon": "^2.0.2",
     "npm": "^6.13.4",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",

@@ -46,7 +46,6 @@ export const getmonthsAndDaysDataFromIDB = cb => {
 
     const getRequest = store.get(1);
     getRequest.onsuccess = e => {
-      console.log(e.target.result);
       // const response = e.target.result;
       // monthsAndDaysData.push(response);
     };

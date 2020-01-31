@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-// const env = process.env.NODE_ENV;
-const env = 'dev';
+const env = process.env.NODE_ENV || 'dev';
 let connectionString;
 
 mongoose.Promise = global.Promise;
@@ -12,16 +11,16 @@ mongoose.set('useUnifiedTopology', true);
 
 switch (env) {
   case 'dev':
-    connectionString = `mongodb://localhost:27017/delivery`;
+    connectionString = `mongodb+srv://admin:admin@cluster0-exqy0.mongodb.net/test?retryWrites=true&w=majority`;
     break;
   case 'staging':
-    connectionString = `mongodb://localhost:27017/delivery`;
+    connectionString = `mongodb+srv://admin:admin@cluster0-exqy0.mongodb.net/test?retryWrites=true&w=majority`;
     break;
   case 'pre_prod':
-    connectionString = `mongodb://localhost:27017/delivery`;
+    connectionString = `mongodb+srv://admin:admin@cluster0-exqy0.mongodb.net/test?retryWrites=true&w=majority`;
     break;
   case 'prod':
-    connectionString = `mongodb://localhost:27017/delivery`;
+    connectionString = `mongodb+srv://admin:admin@cluster0-exqy0.mongodb.net/test?retryWrites=true&w=majority`;
     break;
 }
 
@@ -34,7 +33,7 @@ connection.on('error', e => {
   console.log({ error: e });
 });
 connection.once('open', () => {
-  console.log({ message: 'MongoDB connection established' });
+  console.log({ message: 'MongoDB - Connection Established' });
 });
 
 module.exports = mongoose;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Home from '../HomePage/views/Home';
-import { dispatchFoo } from '../../actions/foo.actions';
 
 import calendarConstants from '../../constants/calendar.constants';
 import { getListOfMonthAndItsDays } from '../../utils/date.utils';
@@ -30,15 +29,11 @@ class HomePage extends Component {
       initIndexedDB(listOfMonthAndItsDays);
     }
   }
-  // handleFooClick = () => {
-  //   this.props.dispatchFoo();
-  // };
 
   render() {
     return (
       <div>
         <Home {...this.props} />
-        {/* <button onClick={this.handleFooClick}>click me</button> */}
       </div>
     );
   }
@@ -50,6 +45,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
-  dispatchFoo
-})(HomePage);
+export default connect(mapStateToProps, {})(HomePage);

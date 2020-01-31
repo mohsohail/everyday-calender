@@ -1,1 +1,4 @@
 export const CLICK_FOO = 'CLICK_FOO';
+export const CALENDAR_INIT = 'CALENDAR_INIT';
+export const CALENDAR_SUCCESS = 'CALENDAR_SUCCESS';
+export const CALENDAR_FAILURE = 'CALENDAR_FAILURE';

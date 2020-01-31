@@ -1,23 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { getCalendar } from '../../actions/calendar.actions';
 import Calendar from '../../components/Calendar/Calendar';
-
-import { getmonthsAndDaysDataFromIDB } from '../../utils/indexedDb.utils';
 
 class CalendarPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
 
   componentDidMount() {
-    getmonthsAndDaysDataFromIDB();
+    this.props.getCalendar();
   }
-
-  componentDidUpdate() {}
 
   render() {
-    return <Calendar />;
+    const { calendarData } = this.props;
+    return (
+      <React.Fragment>
+        {calendarData.status === 1 && <div>loading...</div>}
+        {calendarData.status === 2 && <Calendar calendarData={this.props.calendarData} />}
+      </React.Fragment>
+    );
   }
 }
+const mapStateToProps = state => {
+  return {
+    calendarData: state.calendar.calendarData
+  };
+};
 
-export default CalendarPage;
+export default connect(mapStateToProps, { getCalendar })(CalendarPage);
