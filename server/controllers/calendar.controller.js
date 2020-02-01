@@ -34,10 +34,11 @@ const getYear = async (req, res) => {
 };
 
 const updateYear = async (req, res) => {
+  const { monthOf, days } = req.body;
   try {
-    let payload = {
-      _id: req.params.id,
-      ...req.body
+    const payload = {
+      monthOf,
+      days
     };
     const response = await calendarService.updateYear(payload);
     return res.status(200).send(response);

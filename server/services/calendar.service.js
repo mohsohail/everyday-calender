@@ -62,7 +62,7 @@ const updateYear = async payload => {
       err: false,
       message: 'success',
       status: 200,
-      data: year
+      data: [year]
     };
   } catch (err) {
     return {

@@ -17,30 +17,29 @@ const getAllYear = async () => {
   }
 };
 
-const getCalendar = async ({ userId }) => {
+const getYear = async ({ calendarId }) => {
   try {
-    return await calendarModel.findById(userId);
+    return await calendarModel.findById(calendarId);
   } catch (e) {
     throw e;
   }
 };
 
-const updateCalendar = async ({ userId }) => {
+const updateYear = async payload => {
   try {
-    return await calendarModel.update(
-      { _id: userId },
-      {
-        $set: {}
-      }
+    return await calendarModel.findOneAndUpdate(
+      { 'listOfMonthsData.monthOf': payload.monthOf },
+      { $set: { 'listOfMonthsData.$.days': payload.days } },
+      { new: true }
     );
   } catch (e) {
     throw e;
   }
 };
 
-const deleteCalendar = async ({ userId }) => {
+const deleteCalendar = async ({ calendarId }) => {
   try {
-    return await calendarModel.remove({ _id: userId });
+    return await calendarModel.remove({ _id: calendarId });
   } catch (e) {
     throw e;
   }
@@ -58,8 +57,8 @@ const createCalendar = async payload => {
 module.exports = {
   createYear,
   getAllYear,
-  getCalendar,
-  updateCalendar,
+  getYear,
+  updateYear,
   deleteCalendar,
   createCalendar
 };
