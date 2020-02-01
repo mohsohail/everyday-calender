@@ -14,7 +14,11 @@ class Date extends React.Component {
     const { day } = this.props;
     return (
       <div className="dates">
-        <p key={day.date} className="date" onClick={this.handleClick}>
+        <p
+          key={day.date}
+          className={day.status ? 'date completed' : 'date not-completed'}
+          onClick={this.handleClick}
+        >
           {day.date}
         </p>
       </div>

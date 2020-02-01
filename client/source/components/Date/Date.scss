@@ -4,13 +4,15 @@
   width: 25px;
   height: 25px;
   text-align: center;
-  color: $GREY;
   cursor: pointer;
   padding: 5px;
-  border: 2px solid $GREY;
 }
 
-.highlight {
+.completed {
   color: $GOLD !important;
   border: 2px solid $GOLD !important;
+}
+.not-completed {
+  color: $GREY !important;
+  border: 2px solid $GREY !important;
 }
