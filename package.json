@@ -1,11 +1,12 @@
 {
   "name": "react-get-started",
   "version": "1.0.0",
-  "description": "react getting started boilerplate",
+  "description": "Everyday Calendar",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"webpack-dev-server --config config/webpack/webpack.config.js --mode development --open --hot\" \"cd server && nodemon index.js\"",
+    "start": "concurrently \"webpack-dev-server --config config/webpack/webpack.config.js --mode development --open --hot\" \"cd server && node index.js\"",
+    "build:dev": "webpack --config config/webpack/webpack.config.js --mode development",
     "build:prod": "webpack --config config/webpack/webpack.config.js --mode production"
   },
   "author": "Mohammad Sohail",
@@ -45,6 +46,7 @@
     "style-loader": "^1.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3.9.0",
+    "workbox-webpack-plugin": "^5.0.0"
   }
 }

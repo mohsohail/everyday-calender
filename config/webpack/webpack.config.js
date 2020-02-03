@@ -1,5 +1,6 @@
 const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: path.join(__dirname, '../../client/index.js'),
@@ -35,11 +36,19 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json']
   },
   plugins: [
-    new HTMLWebpackPlugin({
-      template: './client/public/main.html'
+    new HtmlWebpackPlugin({
+      title: 'Everyday Calendar',
+      template: path.join(__dirname, '../../client/public/main.html'),
+      // filename: 'main.html'
     })
+    // new WorkboxPlugin.GenerateSW({
+    //   swDest: 'sw.js',
+    //   clientsClaim: true,
+    //   skipWaiting: true
+    // })
   ],
   devServer: {
+    writeToDisk: true,
     historyApiFallback: true
   }
 };
