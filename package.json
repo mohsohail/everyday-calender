@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"webpack-dev-server --config config/webpack/webpack.config.js --mode development --open --hot\" \"cd server && node index.js\"",
+    "start": "concurrently \"webpack-dev-server --config config/webpack/webpack.config.js --mode development --open\" \"cd server && node index.js\"",
     "build:dev": "webpack --config config/webpack/webpack.config.js --mode development",
     "build:prod": "webpack --config config/webpack/webpack.config.js --mode production"
   },
