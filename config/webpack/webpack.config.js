@@ -35,22 +35,24 @@ module.exports = {
       title: 'Everyday Calendar',
       template: path.join(__dirname, '../../client/public/main.html')
       // filename: 'main.html'
-    }),
+    })
     // new WorkboxPlugin.GenerateSW({
     //   clientsClaim: true,
     //   skipWaiting: true
     // })
-    new WorkboxPlugin.InjectManifest({
-      swSrc: './sw.js',
-      swDest: 'sw.js'
-    })
+    // new WorkboxPlugin.InjectManifest({
+    //   swSrc: './client/public/src-sw.js'
+    //   // swDest: 'sw.js'
+    // })
   ],
   devServer: {
     writeToDisk: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    hot: false,
+    liveReload: false
   },
   output: {
-    path: path.join(__dirname + '../../../bundle'),
+    path: path.resolve(__dirname + '../../../bundle'),
     filename: 'bundle.js',
     publicPath: '/'
   }
