@@ -47,5 +47,10 @@
 //   })
 // );
 
-workbox.routing.precacheAndRoute(self.__precacheManifest);
-workbox.routing.precacheAndRoute(self.__WB_MANIFEST);
+if (workbox) {
+  console.log('Workbox loaded');
+  workbox.precaching.precacheAndRoute(self.__precacheManifest || []);
+  workbox.routing.precacheAndRoute(self.__WB_MANIFEST);
+} else {
+  console.log('Workbox did not load');
+}
