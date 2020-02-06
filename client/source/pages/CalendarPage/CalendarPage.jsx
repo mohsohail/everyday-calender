@@ -12,21 +12,13 @@ class CalendarPage extends React.Component {
     this.props.getCalendarAction();
   }
 
-  handleDateSelect = (monthOf, date) => {
-    const { _id, listOfMonthsData } = this.props.calendarData.data;
-    const filterMonth = listOfMonthsData.filter(item => {
-      return item.monthOf === monthOf;
-    });
-    const days = filterMonth[0].days.map(item => {
-      if (item.date === date) {
-        item.status = !item.status;
-      }
-      return item;
-    });
+  handleDateSelect = (monthOf, date, status) => {
+    const { _id } = this.props.calendarData.data;
     const payload = {
       _id,
       monthOf,
-      days
+      date,
+      status
     };
     this.props.handleDateSelectAction(payload);
   };

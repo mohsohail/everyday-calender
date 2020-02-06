@@ -1,5 +1,6 @@
 const calendarService = require('../services/calendar.service');
 const mongoose = require('mongoose');
+const dateUtil = require('../utils/dateUtils');
 
 const createYear = async (req, res) => {
   try {
@@ -34,11 +35,15 @@ const getYear = async (req, res) => {
 };
 
 const updateYear = async (req, res) => {
-  const { monthOf, days } = req.body;
+  const { _id, monthOf, date, status } = req.body;
+  const monthNumber = dateUtil.getMonthNumber[monthOf];
+  const dateNumber = dateUtil.getDateNumber(date);
   try {
     const payload = {
-      monthOf,
-      days
+      _id,
+      monthNumber,
+      dateNumber,
+      status
     };
     const response = await calendarService.updateYear(payload);
     return res.status(200).send(response);

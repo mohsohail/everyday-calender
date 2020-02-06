@@ -5,9 +5,8 @@ import './Date.scss';
 
 class Date extends React.Component {
   handleClick = e => {
-    e.target.classList.toggle('highlight');
     const { day, monthOf } = this.props;
-    this.props.handleDateSelect(monthOf, day.date);
+    this.props.handleDateSelect(monthOf, day.date, !day.status);
   };
 
   render() {

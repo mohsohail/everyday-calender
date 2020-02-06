@@ -1,4 +1,4 @@
-const calendarModel = require('../models/Calendar.model');
+const calendarModel = require('../models/calendar.model');
 
 const createYear = async payload => {
   try {
@@ -26,12 +26,13 @@ const getYear = async ({ calendarId }) => {
 };
 
 const updateYear = async payload => {
+  const { _id, monthNumber, dateNumber, status } = payload;
+  let updateObj = {
+    [`listOfMonthsData.${monthNumber}.days.${dateNumber}.status`]: status
+  };
+  console.log(updateObj);
   try {
-    return await calendarModel.findOneAndUpdate(
-      { 'listOfMonthsData.monthOf': payload.monthOf },
-      { $set: { 'listOfMonthsData.$.days': payload.days } },
-      { new: true }
-    );
+    return await calendarModel.findOneAndUpdate({ _id: _id }, { $set: updateObj }, { new: true });
   } catch (e) {
     throw e;
   }

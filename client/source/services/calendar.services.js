@@ -15,13 +15,15 @@ export const processGetCalendar = async () => {
 };
 
 export const processDateSelect = async params => {
-  const { _id, monthOf, days } = params;
+  const { _id, monthOf, date, status } = params;
   const request = {
     url: `http://localhost:8000/` + DATE_SELECT(_id),
     method: 'patch',
     data: {
+      _id,
       monthOf,
-      days
+      date,
+      status
     }
   };
   const response = await callAPI(request);

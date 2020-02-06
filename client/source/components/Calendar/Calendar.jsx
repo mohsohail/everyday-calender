@@ -9,8 +9,8 @@ class Calendar extends React.Component {
       listOfMonthsAndItsDay: []
     };
   }
-  handleDateSelect = (monthOf, date) => {
-    this.props.handleDateSelect(monthOf, date);
+  handleDateSelect = (monthOf, date, status) => {
+    this.props.handleDateSelect(monthOf, date, status);
   };
   render() {
     const { listOfMonthsData } = this.props.calendarData.data;
